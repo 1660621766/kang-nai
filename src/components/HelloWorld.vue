@@ -41,6 +41,9 @@ export default {
 .main {
   .main_box {
     background: #fff;
+    .el-main{
+      padding: 0;
+    }
     .aside{
       border-right: 10px solid #f3f6f7;
       background: #f3f6f7;

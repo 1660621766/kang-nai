@@ -1,88 +1,16 @@
 <template>
   <div class="header">
-    <div class="PlatformType">
-      <span>平台类型:</span>
-      <div class="radioBox">
-        <el-checkbox
-          :indeterminate="isIndeterminate"
-          v-model="checkAll"
-          @change="handleCheckAllChange"
-          >全选</el-checkbox
-        >
-        <div style="margin: 15px 10px"></div>
-        <el-checkbox-group
-          v-model="checkedCities"
-          @change="handleCheckedCitiesChange"
-        >
-          <el-checkbox v-for="city in cities" :label="city" :key="city">{{
-            city
-          }}</el-checkbox>
-        </el-checkbox-group>
-      </div>
-    </div>
+    <FirstLine @isShow="updateVisible" :closeButton='true' :lineName='"平台类型"'></FirstLine>
     <el-divider></el-divider>
-    <div class="PlatformType">
-      <span>平台类型:</span>
-      <div class="radioBox">
-        <el-checkbox
-          :indeterminate="isIndeterminate"
-          v-model="checkAll"
-          @change="handleCheckAllChange"
-          >全选</el-checkbox
-        >
-        <div style="margin: 15px 10px"></div>
-        <el-checkbox-group
-          v-model="checkedCities"
-          @change="handleCheckedCitiesChange"
-        >
-          <el-checkbox v-for="city in cities" :label="city" :key="city">{{
-            city
-          }}</el-checkbox>
-        </el-checkbox-group>
-      </div>
+    <div v-show="dialog_visible">
+      <SecondLine></SecondLine>
+      <el-divider></el-divider>
+      <FirstLine :closeButton='false' :lineName='"倾向性"'></FirstLine>
+      <el-divider></el-divider>
+      <FourLine></FourLine>
+      <el-divider></el-divider>
     </div>
-    <el-divider></el-divider>
-    <div class="PlatformType">
-      <span>平台类型:</span>
-      <div class="radioBox">
-        <el-checkbox
-          :indeterminate="isIndeterminate"
-          v-model="checkAll"
-          @change="handleCheckAllChange"
-          >全选</el-checkbox
-        >
-        <div style="margin: 15px 10px"></div>
-        <el-checkbox-group
-          v-model="checkedCities"
-          @change="handleCheckedCitiesChange"
-        >
-          <el-checkbox v-for="city in cities" :label="city" :key="city">{{
-            city
-          }}</el-checkbox>
-        </el-checkbox-group>
-      </div>
-    </div>
-    <el-divider></el-divider>
-    <div class="PlatformType">
-      <span>平台类型:</span>
-      <div class="radioBox">
-        <el-checkbox
-          :indeterminate="isIndeterminate"
-          v-model="checkAll"
-          @change="handleCheckAllChange"
-          >全选</el-checkbox
-        >
-        <div style="margin: 15px 10px"></div>
-        <el-checkbox-group
-          v-model="checkedCities"
-          @change="handleCheckedCitiesChange"
-        >
-          <el-checkbox v-for="city in cities" :label="city" :key="city">{{
-            city
-          }}</el-checkbox>
-        </el-checkbox-group>
-      </div>
-    </div>
+    <FiveLine></FiveLine>
     <el-divider></el-divider>
     <div class="PlatformType">
       <span>xxxx:</span>
@@ -91,42 +19,36 @@
 </template>
 
 <script>
-const cityOptions = ["上海", "北京", "广州", "深圳"];
+import FirstLine from "./header/FirstLine";
+import SecondLine from "./header/SecondLine";
+import ThreeLine from "./header/ThreeLine";
+import FourLine from "./header/FourLine";
+import FiveLine from "./header/FiveLine";
 export default {
   data() {
     return {
-      checkAll: false,
-      checkedCities: ["上海", "北京"],
-      cities: cityOptions,
-      isIndeterminate: true,
+      dialog_visible :true
     };
   },
+  components: {
+    FirstLine,
+    SecondLine,
+    ThreeLine,
+    FourLine,
+    FiveLine,
+  },
   methods: {
-    handleCheckAllChange(val) {
-      this.checkedCities = val ? cityOptions : [];
-      this.isIndeterminate = false;
-    },
-    handleCheckedCitiesChange(value) {
-      let checkedCount = value.length;
-      this.checkAll = checkedCount === this.cities.length;
-      this.isIndeterminate =
-        checkedCount > 0 && checkedCount < this.cities.length;
-    },
+    updateVisible(val) {
+      this.dialog_visible=val
+    }
   },
 };
 </script>
-<style  lang="less">
-.header {
-  .el-checkbox__label {
-    font-size: 12px !important;
-  }
-}
-</style>
+
 <style  lang="less" scoped>
 .el-divider--horizontal {
   margin: 0;
 }
-
 .header {
   font-size: 12px !important;
   .PlatformType {
