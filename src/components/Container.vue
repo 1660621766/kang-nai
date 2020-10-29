@@ -1,10 +1,20 @@
 <template>
   <div class="container">
-    <div class="container-left">
-      <ContainerLeft></ContainerLeft>
+    <div class="container-left">\
+      <div v-for="(item, index) in list" :key="index" @click="clickCom(index)">
+        <ContainerLeft :con="item" @message="getIndex"></ContainerLeft>
+      </div>
+      <el-pagination
+        background
+        layout="prev, pager, next"
+        :total=5
+        :page-size=1>
+      </el-pagination>
     </div>
-    <div class="container-right">
-      <ContainerRight></ContainerRight>
+    <div class="container-right"  v-show="index !== ''">
+      <div>
+         <ContainerRight :data="list[index]" ></ContainerRight>
+      </div>
     </div>
   </div>
 </template>
@@ -16,11 +26,26 @@ export default {
   data() {
     return {
       msg: "a",
+      list:[],
+      index:''
     };
   },
   components:{
     ContainerLeft,
     ContainerRight
+  },
+  methods:{
+    clickCom(index) {
+      console.log(index)
+      this.index = index
+    }
+  },
+  mounted() {
+    this.$axios.get('../static/detail.json').then(res =>{
+      
+      this.list=res.data.data
+      console.log(this.list)
+    })
   }
 };
 </script>

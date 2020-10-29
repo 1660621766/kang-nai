@@ -1,6 +1,6 @@
 <template>
   <div class="PlatformType">
-      <span>{{lineName}}:</span>
+      <span>{{defaultData.title}}:</span>
       <div class="radioBox">
         <el-checkbox
           :indeterminate="isIndeterminate"
@@ -13,12 +13,12 @@
           v-model="checkedCities"
           @change="handleCheckedCitiesChange"
         >
-          <el-checkbox v-for="city in cities" :label="city" :key="city">{{
+          <el-checkbox v-for="city in defaultData.types" :label="city" :key="city">{{
             city
           }}</el-checkbox>
         </el-checkbox-group>
       </div>
-      <el-button type="text" size="small" @click="clickButton" v-show="closeButton">
+      <el-button type="text" size="small" @click="clickButton" v-show="defaultData.closeButton">
           {{state ? '展开' : '收起'}}
           <i :class="iconClass"></i>
       </el-button>
@@ -31,14 +31,14 @@ export default {
   data() {
     return {
       checkAll: false,
-      checkedCities: ["上海", "北京"],
+      checkedCities: [],
       cities: cityOptions,
       isIndeterminate: true,
       iconClass:'el-icon-arrow-right el-icon--right',
       state:true,
     };
   },
-  props:['closeButton','lineName'],
+  props:['defaultData'],
   methods: {
     handleCheckAllChange(val) {
       this.checkedCities = val ? cityOptions : [];
@@ -51,11 +51,14 @@ export default {
         checkedCount > 0 && checkedCount < this.cities.length;
     },
     clickButton() {
-        console.log(lineName)
         this.state =  !this.state;
         this.state ? this.iconClass='el-icon-arrow-right el-icon--right' : 
         this.iconClass='el-icon-arrow-down el-icon--right'
         this.$emit('isShow',this.state)
+    },
+    getChecctData(){
+      debugger
+      return this.checkedCities
     }
   },
 };

@@ -8,7 +8,7 @@
       </el-button>
     </div>
     <div class="detailBox-right">
-      <p>就会看见看见好看就好看了就回来看看逻辑理论框架了解离开家拉大师傅士大夫撒地方撒旦发射点发开距离拉开距离</p>
+      <p>{{data.content}}</p>
         <el-link type="primary">https://sdafsadf/#/zh-CN/component/link</el-link>
     </div>
     <div class="detailBox-right"></div>
@@ -17,12 +17,17 @@
 
 <script>
 export default {
-  name: "Sidebar",
+  props: ['data'],
   data() {
     return {
       msg: "a",
     };
   },
+  methods:{
+    clickButton() {
+
+    }
+  }
 };
 </script>
 

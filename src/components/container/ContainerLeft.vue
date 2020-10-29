@@ -1,23 +1,21 @@
 <template>
   <div class="textBox">
     <div class="textBox-left">
-      <div><el-tag type="" size="small" effect="dark">正面</el-tag></div>
-      <div><el-tag type="" size="small" effect="dark">境内</el-tag></div>
-      <div><el-tag type="" size="small" effect="dark">网站</el-tag></div>
+      <div v-for="(element, i) in con.tag" :key="i"><el-tag type="" size="small" effect="dark" >{{element}}</el-tag></div>
     </div>
     <div class="textBox-right">
       <div><p>
-        拉开距离喀什酱豆腐立刻简历库的撒就发了拉开距离零零会计理
+        {{con.title}}
         </p>
       </div>
       <div>
         <p>
-        拉开距离喀什酱豆腐立刻简历库的撒就发了拉开距离零零会计理fffffffffffffffffffffffffff
+        {{con.content}}
         </p>
       </div>
       <div>
-        <span v-for="item in items" :key="item.label">
-          {{ item.label }}
+        <span v-for="(element, i) in con.logo" :key="i">
+          {{ element }}
         </span>
       </div>
     </div>
@@ -27,24 +25,27 @@
 <script>
 export default {
   name: "Sidebar",
+  props:['con'],
   data() {
     return {
       msg: "a",
-      items:[
-          { type: 'time', label: '2020-10-1' },
-          { type: 'text', label: '新浪微博' },
-          { type: 'text', label: '标签三' },
-          { type: 'text', label: '标签四' },
-          { type: 'text', label: '标签五' }
-        ]
     };
   },
+  methods: {
+    clickLine(index) {
+      this.$emit('message', index)
+    }
+  },
+  mounted(){
+    this.con
+  }
 };
 </script>
 
 <style lang="less" scoped>
 .textBox {
   display: flex;
+      border-bottom: 1px solid #cccccc;
   .textBox-left {
     padding: 15px;
     div {
