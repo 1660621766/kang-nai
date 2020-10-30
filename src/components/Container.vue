@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="container-left">\
+    <div class="container-left">
       <div v-for="(item, index) in list" :key="index" @click="clickCom(index)">
         <ContainerLeft :con="item" @message="getIndex"></ContainerLeft>
       </div>
