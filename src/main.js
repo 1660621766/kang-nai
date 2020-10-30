@@ -15,6 +15,7 @@ Vue.use(ElementUI)
 // Vue.use(Select)
 
 Vue.config.productionTip = false
+// axios.defaults.baseURL = process.env.API_HOST;
 
 /* eslint-disable no-new */
 new Vue({

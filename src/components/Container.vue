@@ -64,7 +64,6 @@ export default {
     display: flex;
     .container-left{
       flex-grow: 1;
-      border-bottom: 1px solid #cccccc;
       border-right: 1px solid #dddddd;
     }
     .container-right{
