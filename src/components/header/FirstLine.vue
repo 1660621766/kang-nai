@@ -57,7 +57,6 @@ export default {
         this.$emit('isShow',this.state)
     },
     getChecctData(){
-      debugger
       return this.checkedCities
     }
   },

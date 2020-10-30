@@ -1,41 +1,48 @@
 <template>
   <div class="detailBox">
-    <div class="detailBox-left">
-       
-      <el-button type="text" size="small" @click="clickButton" >
-         复制
-         <i class="el-icon-copy-document el-icon--down"></i>
+    <div class="detailBox-top">
+      <el-button
+        type="text"
+        size="small"
+        @click="clickButton"
+        v-clipboard:copy="data.content"
+        v-clipboard:success="onCopy"
+        v-clipboard:error="onError"
+      >
+        复制
+        <i class="el-icon-copy-document el-icon--down"></i>
       </el-button>
     </div>
-    <div class="detailBox-right">
-      <p>{{data.content}}</p>
-        <el-link type="primary">https://sdafsadf/#/zh-CN/component/link</el-link>
+    <div class="detailBox-center" id="copyEle">
+      <p>{{ data.content }}</p>
+      <el-link type="primary">https://sdafsadf/#/zh-CN/component/link</el-link>
     </div>
-    <div class="detailBox-right"></div>
+    <div class="detailBox-bottom"></div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['data'],
+  props: ["data"],
   data() {
     return {
       msg: "a",
     };
   },
-  methods:{
-    clickButton() {
-
-    }
-  }
+  methods: {
+    onCopy(e) {
+      console.log(e);
+    },
+    onError(e) {},
+  },
 };
 </script>
 
 <style lang="less" scoped>
-.el-main{
+.el-main {
   padding: 0;
-  .detailBox{
-    .detailBox-left{
+  .detailBox {
+    .detailBox-left {
     }
   }
 }

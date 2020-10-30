@@ -80,7 +80,8 @@ export default {
         ],
         title:"倾向性",
         closeButton:false,
-      }
+      },
+      allData:[]
     };
   },
   components: {
@@ -97,6 +98,14 @@ export default {
     search(){
       this.query.platformType = this.$refs.firstLine.getChecctData()
       this.query.tendencies= this.$refs.twoLine.getChecctData()
+      this.$axios.get('../static/detail.json',{
+        params:{
+          data:this.query
+        }
+      }).then((res) => {
+        this.$store.commit('increment',res.data.data)
+        console.log(this.$store.state.containerObj)
+      })
     }
     
   },
